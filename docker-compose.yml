@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  janus-gateway:
+    image: 'canyan/janus-gateway:0.10.7'
+    command: [ "/usr/local/bin/janus", "-F", "/usr/local/etc/janus" ]
+    ports:
+      - "8088:8088"
+      - "8945:8089"
+      - "8946:8889"
+      - "8000:8000"
+      - "7088:7088"
+      - "7089:7089"
+    volumes:
+      - "./janus/janus.jcfg:/usr/local/etc/janus/janus.jcfg"
+      - "./janus/janus.eventhandler.sampleevh.jcfg:/usr/local/etc/janus/janus.eventhandler.sampleevh.jcfg"
+      - "./janus/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg"
+    restart: always
